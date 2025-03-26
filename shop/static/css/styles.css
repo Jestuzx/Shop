@@ -1,49 +1,157 @@
+/* Общие стили для сайта */
+* {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
 	margin: 0;
 	padding: 0;
+	background-color: #fff;
+	color: #000;
+	transition: background-color 0.3s, color 0.3s;
 }
 
+/* Темная тема */
+body.dark-theme {
+	background-color: #121212;
+	color: white;
+}
+
+/* Стили для переключателя */
+.form-check {
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+}
+
+.form-check-input {
+	width: 60px;
+	height: 30px;
+	cursor: pointer;
+	appearance: none;
+	background-color: #ccc;
+	border-radius: 15px;
+	position: relative;
+	transition: background-color 0.3s;
+}
+
+.form-check-input::before {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 26px;
+	height: 26px;
+	background-color: white;
+	border-radius: 50%;
+	transition: transform 0.3s;
+}
+
+.form-check-input:checked {
+	background-color: #007bff;
+}
+
+.form-check-input:checked::before {
+	transform: translateX(30px);
+}
+
+.form-check-label {
+	margin-left: 10px;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	color: #000;
+}
+
+/* Для темной темы */
+body.dark-theme .form-check-label {
+	color: white;
+}
+
+body.dark-theme .form-check-input:checked {
+	background-color: #00bfff;
+}
+
+body.dark-theme .form-check-input {
+	background-color: #333;
+}
+
+/* Верхняя часть страницы, включая навигацию и заголовок */
 header {
+	background-color: #f8f9fa;
+	padding: 10px 20px;
+	text-align: center;
+}
+
+body.dark-theme header {
 	background-color: #333;
 	color: white;
-	text-align: center;
-	padding: 15px 0;
 }
 
-header a {
-	color: white;
-	text-decoration: none;
-	font-size: 24px;
-}
-
-main {
-	width: 80%;
-	margin: 20px auto;
-	background: white;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.product {
-	border: 1px solid #ddd;
+/* Навигация */
+nav {
+	background-color: #f8f9fa;
 	padding: 10px;
-	margin: 10px;
-	display: inline-block;
-	width: 200px;
-	text-align: center;
-	background: white;
-	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.product img {
-	max-width: 100%;
-	height: auto;
+body.dark-theme nav {
+	background-color: #333;
 }
 
-.product h2 {
-	font-size: 18px;
-	margin: 10px 0;
+nav a {
+	margin-right: 15px;
+	color: #000;
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+body.dark-theme nav a {
+	color: white;
+}
+
+body.dark-theme nav a:hover {
+	color: #f8f9fa;
+}
+
+/* Стили для навигации */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navbar-brand {
+	margin-right: 0;
+}
+
+.navbar-nav {
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	margin-left: 15px;
+}
+
+.form-check {
+	margin-right: 15px;
+}
+
+/* Стили для темной темы */
+body.dark-theme .navbar {
+	background-color: #333;
+}
+
+body.dark-theme .navbar-brand,
+body.dark-theme .nav-link,
+body.dark-theme .form-check-label {
+	color: white;
+}
+
+body.dark-theme .nav-link:hover,
+body.dark-theme .form-check-label:hover {
+	color: #f8f9fa;
 }

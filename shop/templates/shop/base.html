@@ -6,24 +6,60 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{% block title %}My Shop{% endblock %}</title>
+		<!-- Подключаем Bootstrap CSS -->
+		<link
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Подключаем собственные стили -->
 		<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 	</head>
 	<body>
-		<nav>
-			<a href="{% url 'product_list' %}">Home</a>
-			{% if user.is_authenticated %}
-			<a href="{% url 'profile' %}">Profile</a>
-			<!-- Формируем форму для выхода -->
-			<form action="{% url 'logout' %}" method="post" style="display: inline">
-				{% csrf_token %}
-				<button type="submit">Logout</button>
-			</form>
-			{% else %}
-			<a href="{% url 'login' %}">Login</a>
-			<a href="{% url 'register' %}">Register</a>
-			{% endif %}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'product_list' %}">Home</a>
+
+			<!-- Кнопка для мобильного меню -->
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<div class="navbar-nav ml-auto">
+					<!-- Переключатель для темы -->
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" id="theme-toggle" />
+						<label class="form-check-label" for="theme-toggle">Dark Mode</label>
+					</div>
+
+					{% if user.is_authenticated %}
+					<a class="nav-link" href="{% url 'profile' %}">Profile</a>
+					<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+					{% else %}
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+					<a class="nav-link" href="{% url 'register' %}">Register</a>
+					{% endif %}
+				</div>
+			</div>
 		</nav>
 
 		<main>{% block content %}{% endblock %}</main>
+
+		<!-- Подключаем jQuery и Popper.js -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+		<!-- Подключаем Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+		<!-- Подключаем свой JavaScript файл для переключения темы -->
+		<script src="{% static 'js/theme-toggle.js' %}"></script>
 	</body>
 </html>
