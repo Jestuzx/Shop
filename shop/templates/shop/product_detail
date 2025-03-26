@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+
+{% block title %}{{ product.name }} - My Shop{% endblock %}
+
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <p>Description: {{ product.description }}</p>
+    <p>Price: £{{ product.price }}</p>
+    <p>In stock: {{ product.stock }}</p>
+    <a href="{% url 'product_list' %}">Back to products</a>
+{% endblock %}
